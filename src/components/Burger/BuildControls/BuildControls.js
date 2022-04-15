@@ -33,6 +33,7 @@ const BuildControls = (props) => {
 				/>
 			))}
 			<Button
+				disabled={!props.purchasable}
 				bg='munchy.red'
 				outline='none'
 				cursor='pointer'
