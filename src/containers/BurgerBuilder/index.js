@@ -50,12 +50,19 @@ const BurgerBuilder = () => {
 		setTotalPrice(newPrice);
 	};
 
+	const disabledInfo = { ...ingredients };
+	for (let key in disabledInfo) {
+		disabledInfo[key] = disabledInfo[key] <= 0;
+	}
+
 	return (
 		<Auxilliary>
 			<Burger ingredients={ingredients} />
 			<BuildControls
 				ingredientsAdded={addIngredientHandler}
 				ingredientsRemoved={removeIngredientHandler}
+				disabled={disabledInfo}
+				price={totalPrice}
 			/>
 		</Auxilliary>
 	);

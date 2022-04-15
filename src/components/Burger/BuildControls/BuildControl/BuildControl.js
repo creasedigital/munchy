@@ -31,6 +31,7 @@ const BuildControl = (props) => {
 				}}
 				_active={{ background: '#DAA972' }}
 				onClick={props.removed}
+				disabled={props.disabled}
 			>
 				Less
 			</Button>
@@ -55,7 +56,7 @@ const BuildControl = (props) => {
 						color: '#cccccc',
 					},
 					':hover:disabled': {
-						cursor: 'not-allowed',
+						cursor: 'notAllowed',
 					},
 				}}
 				onClick={props.added}
