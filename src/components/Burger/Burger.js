@@ -14,7 +14,6 @@ const Burger = (props) => {
 	if (transformedIngredients.length === 0) {
 		transformedIngredients = <Box as='p'>Please start adding ingredients!</Box>;
 	}
-	console.log(transformedIngredients);
 	return (
 		<Box
 			w={{ base: '100%', sm: '450px', md: '700px' }}

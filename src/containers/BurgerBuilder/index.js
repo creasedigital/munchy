@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Burger from '../../components/Burger/Burger';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import Modal from '../../components/Modal/Modal';
 import Auxilliary from '../../hoc/Auxilliary';
 
 const INGREDIENT_PRICES = {
@@ -19,6 +21,7 @@ const BurgerBuilder = () => {
 	});
 	const [totalPrice, setTotalPrice] = useState(4);
 	const [purchasable, setPurchasable] = useState(false);
+	const [purchasing, setPurchasing] = useState(false);
 
 	const updatePurchaseState = (ingredients) => {
 		const sum = Object.keys(ingredients)
@@ -70,8 +73,15 @@ const BurgerBuilder = () => {
 		disabledInfo[key] = disabledInfo[key] <= 0;
 	}
 
+	const purchaseHandler = () => {
+		setPurchasing(true);
+	};
+
 	return (
 		<Auxilliary>
+			<Modal show={purchasing}>
+				<OrderSummary ingredients={ingredients} />
+			</Modal>
 			<Burger ingredients={ingredients} />
 			<BuildControls
 				ingredientsAdded={addIngredientHandler}
@@ -79,6 +89,7 @@ const BurgerBuilder = () => {
 				disabled={disabledInfo}
 				price={totalPrice}
 				purchasable={purchasable}
+				ordered={purchaseHandler}
 			/>
 		</Auxilliary>
 	);
