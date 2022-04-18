@@ -1,5 +1,6 @@
-import { Box, Heading, List, ListItem } from '@chakra-ui/react';
+import { Box, Flex, Heading, List, ListItem } from '@chakra-ui/react';
 import Auxilliary from '../../../hoc/Auxilliary';
+import CustomButton from '../../CustomButton/CustomButton';
 
 const OrderSummary = (props) => {
 	const ingredientSummary = Object.keys(props.ingredients).map((igKey) => {
@@ -18,6 +19,10 @@ const OrderSummary = (props) => {
 			<Box as='p'>A delicious burgerwith the following ingredients:</Box>
 			<List>{ingredientSummary}</List>
 			<Box as='p'>Continue to checkout this order?</Box>
+			<Flex>
+				<CustomButton btnType='danger'>CANCEL</CustomButton>
+				<CustomButton btnType='success'>BUY</CustomButton>
+			</Flex>
 		</Auxilliary>
 	);
 };
