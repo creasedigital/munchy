@@ -18,6 +18,9 @@ const OrderSummary = (props) => {
 			<Heading as='h3'>Your Order</Heading>
 			<Box as='p'>A delicious burgerwith the following ingredients:</Box>
 			<List>{ingredientSummary}</List>
+			<Box as='p'>
+				<strong>Total Price: {props.price.toFixed(2)}</strong>
+			</Box>
 			<Box as='p'>Continue to checkout this order?</Box>
 			<Flex>
 				<CustomButton clicked={props.purchaseCancelled} btnType='danger'>

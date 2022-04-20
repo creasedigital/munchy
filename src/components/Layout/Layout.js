@@ -1,11 +1,12 @@
 import { Box } from '@chakra-ui/react';
 import Auxilliary from '../../hoc/Auxilliary';
+import Toolbar from '../Navigation/Toolbar/Toolbar';
 
 const Layout = (props) => {
 	return (
 		<Auxilliary>
-			<div>Toolbar, SideDrawer, Backdrop</div>
-			<Box as='main' marginTop={4}>
+			<Toolbar />
+			<Box as='main' marginTop='72px'>
 				{props.children}
 			</Box>
 		</Auxilliary>
