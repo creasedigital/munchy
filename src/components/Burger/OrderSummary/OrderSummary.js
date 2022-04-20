@@ -20,8 +20,12 @@ const OrderSummary = (props) => {
 			<List>{ingredientSummary}</List>
 			<Box as='p'>Continue to checkout this order?</Box>
 			<Flex>
-				<CustomButton btnType='danger'>CANCEL</CustomButton>
-				<CustomButton btnType='success'>BUY</CustomButton>
+				<CustomButton clicked={props.purchaseCancelled} btnType='danger'>
+					CANCEL
+				</CustomButton>
+				<CustomButton clicked={props.purchaseContinued} btnType='success'>
+					BUY
+				</CustomButton>
 			</Flex>
 		</Auxilliary>
 	);

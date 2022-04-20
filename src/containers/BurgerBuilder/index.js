@@ -81,10 +81,18 @@ const BurgerBuilder = () => {
 		setPurchasing(false);
 	};
 
+	const purchaseContinueHandler = () => {
+		alert('Continue purchase!');
+	};
+
 	return (
 		<Auxilliary>
 			<Modal show={purchasing} modalClosed={purchaseCancelHandler}>
-				<OrderSummary ingredients={ingredients} />
+				<OrderSummary
+					ingredients={ingredients}
+					purchaseCancelled={purchaseCancelHandler}
+					purchaseContinued={purchaseContinueHandler}
+				/>
 			</Modal>
 			<Burger ingredients={ingredients} />
 			<BuildControls
