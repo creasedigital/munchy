@@ -1,29 +1,48 @@
 import { Link, ListItem } from '@chakra-ui/react';
-import './NavItem.css';
 const NavigationItem = (props) => {
 	return (
 		<ListItem
-			m={0}
+			m='10px 0'
 			boxSizing='border-box'
-			d='flex'
-			h='100%'
+			d='block'
+			w='100%'
 			alignItems='center'
+			sx={{
+				'@media (min-width: 500px)': {
+					margin: '0px',
+					display: 'flex',
+					height: '100%',
+					width: 'auto',
+					alignItems: 'center',
+				},
+			}}
 		>
 			<Link
 				href={props.link}
 				className={props.active && 'active'}
-				color='munchy.yellow'
+				color='munchy.main'
 				textDecoration='none'
-				h='100%'
-				p='16px 10px'
-				borderBottom='4px solid transparent'
+				w='100%'
 				boxSizing='border-box'
 				d='block'
+				sx={{
+					'&.active': {
+						color: 'munchy.red',
+					},
+					'@media (min-width: 500px)': {
+						color: 'munchy.yellow',
+						backgroundColor: '#8F0000',
+						height: '100%',
+						padding: '16px 10px',
+						borderBottom: '4px solid transparent',
+					},
+				}}
 				css={{
-					'.active, :hover, :active': {
+					':hover, :active': {
 						backgroundColor: '#8F5C2C',
 						borderBottom: '4px solid #ff5555',
 						color: 'munchy.red',
+						textDecoration: 'none',
 					},
 				}}
 			>

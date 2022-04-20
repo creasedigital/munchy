@@ -22,8 +22,16 @@ const Toolbar = (props) => {
 			zIndex={90}
 		>
 			<Box>MENU</Box>
-			<Logo />
-			<Box as='nav' h='100%'>
+			<Logo height='60%' />
+			<Box
+				as='nav'
+				h='100%'
+				sx={{
+					'@media (max-width: 499px)': {
+						display: 'none',
+					},
+				}}
+			>
 				<NavigationItems />
 			</Box>
 		</Box>
