@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
 import Logo from '../../Logo/Logo';
+import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import NavigationItems from './NavigationItems/NavigationItems';
 
 const Toolbar = (props) => {
@@ -21,7 +22,7 @@ const Toolbar = (props) => {
 			boxSizing='border-box'
 			zIndex={90}
 		>
-			<Box>MENU</Box>
+			<DrawerToggle clicked={props.drawerToggleClicked} />
 			<Logo height='60%' />
 			<Box
 				as='nav'
