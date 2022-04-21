@@ -19,9 +19,24 @@ const DrawerToggle = (props) => {
 				},
 			}}
 		>
-			<Box width='90%' height='3px' backgroundColor='white'></Box>
-			<Box width='90%' height='3px' backgroundColor='white'></Box>
-			<Box width='90%' height='3px' backgroundColor='white'></Box>
+			<Box
+				width='90%'
+				height='3px'
+				borderRadius='2px'
+				backgroundColor='white'
+			></Box>
+			<Box
+				width='90%'
+				height='3px'
+				borderRadius='2px'
+				backgroundColor='white'
+			></Box>
+			<Box
+				width='90%'
+				height='3px'
+				borderRadius='2px'
+				backgroundColor='white'
+			></Box>
 		</Box>
 	);
 };
