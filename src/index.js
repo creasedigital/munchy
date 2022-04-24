@@ -5,6 +5,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import axios from 'axios';
+
+axios.defaults.baseURL(
+	'https://console.firebase.google.com/project/react-munchy/database/react-munchy-default-rtdb/data/~2F',
+);
 
 ReactDOM.render(
 	<React.StrictMode>
