@@ -5,6 +5,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import { initializeApp } from 'firebase/app';
+// import { getDatabase } from 'firebase/database';
+
+// const firebaseConfig = {
+// 	apiKey: '"a7bbf0ef45ca4bf1db934018ef5d612162aea86e',
+// 	authDomain: 'react-munchy.firebaseapp.com',
+// 	databaseURL: 'https://react-munchy-default-rtdb.firebaseio.com',
+// 	projectId: 'react-munchy',
+// 	storageBucket: 'react-munchy.appspot.com',
+// 	messagingSenderId: 'SENDER_ID',
+// 	appId: 'APP_ID',
+// 	measurementId: 'G-MEASUREMENT_ID',
+// };
+
+// const app = initializeApp(firebaseConfig);
+
+// Get a reference to the database service
+// const database = getDatabase(app);
 
 ReactDOM.render(
 	<React.StrictMode>

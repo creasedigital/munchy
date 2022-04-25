@@ -16,7 +16,7 @@ const OrderSummary = (props) => {
 	return (
 		<Auxilliary>
 			<Heading as='h3'>Your Order</Heading>
-			<Box as='p'>A delicious burgerwith the following ingredients:</Box>
+			<Box as='p'>A delicious burger with the following ingredients:</Box>
 			<List>{ingredientSummary}</List>
 			<Box as='p'>
 				<strong>Total Price: {props.price.toFixed(2)}</strong>

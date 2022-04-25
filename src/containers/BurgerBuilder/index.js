@@ -4,6 +4,8 @@ import Burger from '../../components/Burger/Burger';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Modal from '../../components/Modal/Modal';
 import Auxilliary from '../../hoc/Auxilliary';
+import axios from '../../axios-orders';
+import Loader from '../../components/Loader/Loader';
 
 const INGREDIENT_PRICES = {
 	salad: 0.5,
@@ -22,6 +24,7 @@ const BurgerBuilder = () => {
 	const [totalPrice, setTotalPrice] = useState(4);
 	const [purchasable, setPurchasable] = useState(false);
 	const [purchasing, setPurchasing] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const updatePurchaseState = (ingredients) => {
 		const sum = Object.keys(ingredients)
@@ -82,18 +85,53 @@ const BurgerBuilder = () => {
 	};
 
 	const purchaseContinueHandler = () => {
-		alert('Continue purchase!');
+		// alert('Continue purchase!');
+		setLoading(true);
+		const order = {
+			ingredients,
+			price: totalPrice,
+			customer: {
+				name: 'King Austin',
+				address: {
+					street: '3 Und Str.',
+					zipCode: '900107',
+					country: 'Nigeria',
+				},
+				email: 'ojorechris@gmail.com',
+			},
+			deliveryMethod: 'fastest',
+		};
+		axios
+			.post('/orders.json', order)
+			.then((response) => {
+				setLoading(false);
+				setPurchasing(false);
+				console.log(response);
+			})
+			.catch((err) => {
+				setLoading(false);
+				setPurchasing(false);
+				console.log(err);
+			});
 	};
+
+	let orderSummary = (
+		<OrderSummary
+			ingredients={ingredients}
+			price={totalPrice}
+			purchaseCancelled={purchaseCancelHandler}
+			purchaseContinued={purchaseContinueHandler}
+		/>
+	);
+
+	if (loading) {
+		orderSummary = <Loader />;
+	}
 
 	return (
 		<Auxilliary>
 			<Modal show={purchasing} modalClosed={purchaseCancelHandler}>
-				<OrderSummary
-					ingredients={ingredients}
-					price={totalPrice}
-					purchaseCancelled={purchaseCancelHandler}
-					purchaseContinued={purchaseContinueHandler}
-				/>
+				{orderSummary}
 			</Modal>
 			<Burger ingredients={ingredients} />
 			<BuildControls
