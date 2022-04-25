@@ -4,7 +4,8 @@ import Burger from '../../components/Burger/Burger';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Modal from '../../components/Modal/Modal';
 import Auxilliary from '../../hoc/Auxilliary';
-import instance from '../../axios-orders';
+import axios from '../../axios-orders';
+import Spinner from '../../components/Spinner/Spinner';
 
 const INGREDIENT_PRICES = {
 	salad: 0.5,
@@ -23,6 +24,7 @@ const BurgerBuilder = () => {
 	const [totalPrice, setTotalPrice] = useState(4);
 	const [purchasable, setPurchasable] = useState(false);
 	const [purchasing, setPurchasing] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const updatePurchaseState = (ingredients) => {
 		const sum = Object.keys(ingredients)
@@ -84,6 +86,7 @@ const BurgerBuilder = () => {
 
 	const purchaseContinueHandler = () => {
 		// alert('Continue purchase!');
+		setLoading(true);
 		const order = {
 			ingredients,
 			price: totalPrice,
@@ -98,21 +101,36 @@ const BurgerBuilder = () => {
 			},
 			deliveryMethod: 'fastest',
 		};
-		instance
+		axios
 			.post('/orders.json', order)
-			.then((res) => console.log(res))
-			.catch((err) => console.log(err));
+			.then((response) => {
+				setLoading(false);
+
+				console.log(response);
+			})
+			.catch((err) => {
+				setLoading(false);
+				console.log(err);
+			});
 	};
+
+	let orderSummary = (
+		<OrderSummary
+			ingredients={ingredients}
+			price={totalPrice}
+			purchaseCancelled={purchaseCancelHandler}
+			purchaseContinued={purchaseContinueHandler}
+		/>
+	);
+
+	if (loading) {
+		orderSummary = <Spinner />;
+	}
 
 	return (
 		<Auxilliary>
 			<Modal show={purchasing} modalClosed={purchaseCancelHandler}>
-				<OrderSummary
-					ingredients={ingredients}
-					price={totalPrice}
-					purchaseCancelled={purchaseCancelHandler}
-					purchaseContinued={purchaseContinueHandler}
-				/>
+				{orderSummary}
 			</Modal>
 			<Burger ingredients={ingredients} />
 			<BuildControls
