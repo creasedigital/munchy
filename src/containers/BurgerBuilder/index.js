@@ -4,6 +4,7 @@ import Burger from '../../components/Burger/Burger';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Modal from '../../components/Modal/Modal';
 import Auxilliary from '../../hoc/Auxilliary';
+import instance from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
 	salad: 0.5,
@@ -82,7 +83,25 @@ const BurgerBuilder = () => {
 	};
 
 	const purchaseContinueHandler = () => {
-		alert('Continue purchase!');
+		// alert('Continue purchase!');
+		const order = {
+			ingredients,
+			price: totalPrice,
+			customer: {
+				name: 'King Austin',
+				address: {
+					street: '3 Und Str.',
+					zipCode: '900107',
+					country: 'Nigeria',
+				},
+				email: 'ojorechris@gmail.com',
+			},
+			deliveryMethod: 'fastest',
+		};
+		instance
+			.post('/orders.json', order)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
 	};
 
 	return (
