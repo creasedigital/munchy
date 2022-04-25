@@ -5,7 +5,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Modal from '../../components/Modal/Modal';
 import Auxilliary from '../../hoc/Auxilliary';
 import axios from '../../axios-orders';
-import Spinner from '../../components/Spinner/Spinner';
+import Loader from '../../components/Loader/Loader';
 
 const INGREDIENT_PRICES = {
 	salad: 0.5,
@@ -105,11 +105,12 @@ const BurgerBuilder = () => {
 			.post('/orders.json', order)
 			.then((response) => {
 				setLoading(false);
-
+				setPurchasing(false);
 				console.log(response);
 			})
 			.catch((err) => {
 				setLoading(false);
+				setPurchasing(false);
 				console.log(err);
 			});
 	};
@@ -124,7 +125,7 @@ const BurgerBuilder = () => {
 	);
 
 	if (loading) {
-		orderSummary = <Spinner />;
+		orderSummary = <Loader />;
 	}
 
 	return (

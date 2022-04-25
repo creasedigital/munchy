@@ -1,8 +1,14 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Spinner, Flex } from '@chakra-ui/react';
 
-const Spinner = () => {
+const Loader = () => {
 	return (
-		<Box
+		<>
+			<Flex alignItems='center' padding={20} justifyContent='center'>
+				<Spinner color='munchy.main' />
+			</Flex>
+			{/*
+
+    <Box
 			css={{
 				margin: '100px auto',
 				fontSize: '25px',
@@ -92,6 +98,10 @@ const Spinner = () => {
 		>
 			Loading...
 		</Box>
+
+    
+      */}
+		</>
 	);
 };
-export default Spinner;
+export default Loader;
