@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 // import { initializeApp } from 'firebase/app';
 // import { getDatabase } from 'firebase/database';
 
@@ -24,13 +25,16 @@ import reportWebVitals from './reportWebVitals';
 // Get a reference to the database service
 // const database = getDatabase(app);
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
 	<React.StrictMode>
 		<ChakraProvider resetCSS={true} theme={theme}>
-			<App />
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</ChakraProvider>
 	</React.StrictMode>,
-	document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
